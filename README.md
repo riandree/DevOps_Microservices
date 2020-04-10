@@ -4,43 +4,35 @@ This repository is the assignment associated with Cloud DevOps ND - Course 04 - 
 
 CircleCI build status : [![riandree](https://circleci.com/gh/riandree/DevOps_Microservices.svg?style=svg)](https://app.circleci.com/pipelines/github/riandree/DevOps_Microservices)
 
-## Project Overview
+## Project Summary
 
-In this project, you will apply the skills you have acquired in this course to operationalize a Machine Learning Microservice API. 
+This project, a python 'flask' app, builds a pre-trained, `sklearn` model that has been trained to predict housing prices in Boston according to several features, such as average rooms in a home and data about highway access, teacher-to-pupil ratios, and so on. You can read more about the data, which was initially taken from Kaggle, on [the data source site](https://www.kaggle.com/c/boston-housing). 
 
-You are given a pre-trained, `sklearn` model that has been trained to predict housing prices in Boston according to several features, such as average rooms in a home and data about highway access, teacher-to-pupil ratios, and so on. You can read more about the data, which was initially taken from Kaggle, on [the data source site](https://www.kaggle.com/c/boston-housing). This project tests your ability to operationalize a Python flask app—in a provided file, `app.py`—that serves out predictions (inference) about housing prices through API calls. This project could be extended to any pre-trained machine learning model, such as those for image recognition and data labeling.
+### CircleCI build and Docker-Image Registry on Docker-Hub
 
-### Project Tasks
+This project is automatically build as a Docker container which is pushed to Docker-Hub using CircleCI.
 
-Your project goal is to operationalize this working, machine learning microservice using [kubernetes](https://kubernetes.io/), which is an open-source system for automating the management of containerized applications. In this project you will:
-* Test your project code using linting
-* Complete a Dockerfile to containerize this application
-* Deploy your containerized application using Docker and make a prediction
-* Improve the log statements in the source code for this application
-* Configure Kubernetes and create a Kubernetes cluster
-* Deploy a container using Kubernetes and make a prediction
-* Upload a complete Github repo with CircleCI to indicate that your code has been tested
-
-You can find a detailed [project rubric, here](https://review.udacity.com/#!/rubrics/2576/view).
-
-**The final implementation of the project will showcase your abilities to operationalize production microservices.**
-
----
+ [The CircleCI Pipeline](https://app.circleci.com/pipelines/github/riandree/DevOps_Microservices) lints and builds the project as a Docker-Image which is then pushed to [Docker-Hub](https://hub.docker.com/repository/docker/andrerieck/predictor).
 
 ## Setup the Environment
 
 * Create a virtualenv and activate it
 * Run `make install` to install the necessary dependencies
 
-### Running `app.py`
+## Running the Prediction-Service
 
-1. Standalone:  `python app.py`
-2. Run in Docker:  `./run_docker.sh`
-3. Run in Kubernetes:  `./run_kubernetes.sh`
+### Running as a local Docker Container 
 
-### Kubernetes Steps
+Please run the script `./run_docker.sh` from within the workspace of this Git repository (Docker needs to be available).
+This will build and run the Docker container for the prediction service and forward port 8000 to the prediction service.
+To make a prediction against this service please then run `./make_prediction.sh` (curl needs to be available).
 
-* Setup and Configure Docker locally
-* Setup and Configure Kubernetes locally
-* Create Flask app in Container
-* Run via kubectl
+### Running as a pod in kubernetes
+
+This assumes kubectl is available and configured to talk to an existing kubernetes cluster.
+To deploy the prediction-serivce as a pod on the k8s cluster please run `./run_kubernetes.sh`
+which will deploy the docker-image for the prediction-service *andrerieck/predictor* available on Docker-Hub 
+as a pod. Local port 8000 is then forwarded to this pod and after terminating the port-forward by typing
+ctrl+C the pod is deleted.
+
+To make a prediction against this service while the port-forward is active please run `./make_prediction.sh` (curl needs to be available).
