@@ -14,10 +14,18 @@ This project is automatically build as a Docker container which is pushed to Doc
 
  [The CircleCI Pipeline](https://app.circleci.com/pipelines/github/riandree/DevOps_Microservices) lints and builds the project as a Docker-Image which is then pushed to [Docker-Hub](https://hub.docker.com/repository/docker/andrerieck/predictor).
 
-## Setup the Environment
+## Setup the Environment for development
 
-* Create a virtualenv and activate it
-* Run `make install` to install the necessary dependencies
+### Create a virtualenv and activate it
+
+It is assumed that python3, [hadolint](https://github.com/hadolint/hadolint) and [pylint](https://www.pylint.org/) are installed and that the '.devops' Virtual-Env is active.
+
+In order to activate the *devops* environment please run
+
+    python3 -m venv ~/.devops
+    source ~/.devops/bin/activate
+
+Then while the virtual environment is active please run `make install` to install the projects python dependencies.
 
 ## Running the Prediction-Service
 
