@@ -2,7 +2,7 @@
 
 This repository is the assignment associated with Cloud DevOps ND - Course 04 - Microservices at Scale using AWS & Kubernetes.
 
-[![<riandree>](https://circleci.com/github/riandree/DevOps_Microservices.svg?style=svg)](https://app.circleci.com/pipelines/github/riandree/DevOps_Microservices/)
+[![riandree](https://circleci.com/github/riandree/DevOps_Microservices.svg?style=svg)](https://app.circleci.com/pipelines/github/riandree/DevOps_Microservices)
 
 
 ## Project Overview
