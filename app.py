@@ -6,6 +6,8 @@ import pandas as pd
 from sklearn.externals import joblib
 from sklearn.preprocessing import StandardScaler
 
+import sys
+
 app = Flask(__name__)
 LOG = create_logger(app)
 LOG.setLevel(logging.INFO)
@@ -68,4 +70,11 @@ def predict():
 if __name__ == "__main__":
     # load pretrained model as clf
     clf = joblib.load("./model_data/boston_housing_prediction.joblib")
-    app.run(host='0.0.0.0', port=80, debug=True) # specify port=80
+
+    port2Use=80
+    if len(sys.argv) == 2:
+        port2Use=int(sys.argv[1])
+
+    LOG.info(f"starting server on port {port2Use}")
+
+    app.run(host='0.0.0.0', port=port2Use, debug=True) # specify port=80

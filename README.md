@@ -29,6 +29,11 @@ Then while the virtual environment is active please run `make install` to instal
 
 ## Running the Prediction-Service
 
+### Running the app locally without using docker
+
+This might be useful for development. Please run `make run` while the *devops* virtual env is active to start the service on port 8000.
+To make a prediction against this service while the app isrunning please use `./make_prediction.sh` (curl needs to be available).
+
 ### Running as a local Docker Container 
 
 Please run the script `./run_docker.sh` from within the workspace of this Git repository (Docker needs to be available).

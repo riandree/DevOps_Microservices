@@ -7,13 +7,17 @@
 
 setup:
 	# Create python virtualenv & source it
-	# source ~/.devops/bin/activate
 	python3 -m venv ~/.devops
+	. ~/.devops/bin/activate
 
 install:
 	# This should be run from inside a virtualenv
 	pip install --upgrade pip &&\
 		pip install -r requirements.txt
+
+run: 
+    # run the predictor locally without docker
+	python app.py 8000
 
 lint:
 	# See local hadolint install instructions:   https://github.com/hadolint/hadolint
