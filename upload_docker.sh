@@ -5,11 +5,14 @@
 
 # Step 1:
 # Create dockerpath
-# dockerpath=<your docker ID/path>
+dockerpath=andrerieck/predictor
 
 # Step 2:  
 # Authenticate & tag
 echo "Docker ID and Image: $dockerpath"
+echo "Please provide password to login into Docker-Hub in order to upload $dockerpath"
+docker login --username andrerieck
 
 # Step 3:
 # Push image to a docker repository
+docker push $dockerpath

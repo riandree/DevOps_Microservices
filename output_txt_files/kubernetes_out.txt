@@ -1,1 +1,23 @@
-<paste log output from Kubernetes-mediated prediction, here>
+---------------------------------------
+Output from ./make_prediction.sh call :
+
+Port: 8000
+{
+  "prediction": [
+    20.35373177134412
+  ]
+}
+
+---------------------------------------------------------------------------------------
+Output resulting from ./make_prediction.sh call in terminal handling the port-forward :
+
+pod/predictor created
+waiting for pod 'predictor' to be ready (this may take a while when the image has to be pulled)
+pod/predictor condition met
+currently running pods in default namespace
+NAME        READY   STATUS    RESTARTS   AGE
+predictor   1/1     Running   0          3s
+Type ctrl+C to stop port-forward and delete the 'predictor' pod
+Forwarding from 127.0.0.1:8000 -> 80
+Forwarding from [::1]:8000 -> 80
+Handling connection for 8000
